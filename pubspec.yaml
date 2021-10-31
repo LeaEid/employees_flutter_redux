@@ -41,7 +41,8 @@ dependencies:
   provider: ^6.0.1
   #date and time format library
   intl: ^0.17.0
-  infinite_scroll_pagination: ^3.1.0
+  # infinite_scroll_pagination: ^3.1.0
+  lazy_load_scrollview: ^1.3.0
 
 
 dev_dependencies:

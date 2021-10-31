@@ -1,9 +1,15 @@
 import 'package:suppy_employees/models/employee.dart';
 
-class UpdateEmployeeAction {
-  final List<Employee> updatedEmployee;
+class InitializeEmployeesAction {
+  final List<Employee> initilizedEmployees;
 
-  UpdateEmployeeAction(this.updatedEmployee);
+  InitializeEmployeesAction(this.initilizedEmployees);
+}
+
+class UpdateEmployeesAction {
+  final List<Employee> updatedEmployees;
+
+  UpdateEmployeesAction(this.updatedEmployees);
 }
 
 

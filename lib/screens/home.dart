@@ -10,8 +10,6 @@ import 'package:suppy_employees/redux/app_state.dart';
 import 'package:suppy_employees/screens/employee_details.dart';
 import 'package:suppy_employees/screens/employees.dart';
 
-enum ApiResultStates { INIT, LOADING, DONE }
-
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -114,7 +112,8 @@ class HomeScreen extends StatelessWidget {
         Provider.of<EmployeesProvider>(context, listen: false);
     try {
       employeesProvider.updateApiState("LOADING");
-      var result = await apiService.get('/employees'); //?page=1&limit=12
+      var result =
+          await apiService.get('/employees?page=1&limit=15'); //?page=1&limit=12
       // convert api result of type dynamic list to employees list
       List<Employee> list = <Employee>[];
       for (var i = 0; i < result.length; i++) {
@@ -122,8 +121,9 @@ class HomeScreen extends StatelessWidget {
         Employee employee = Employee.fromJson(row);
         list.add(employee);
       }
-      // dispatch redux update employees list action
-      StoreProvider.of<AppState>(context).dispatch(UpdateEmployeeAction(list));
+
+      StoreProvider.of<AppState>(context)
+          .dispatch(InitializeEmployeesAction(list));
       // navigate to employees screen
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => EmployeesScreen()));
